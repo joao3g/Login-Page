@@ -1,5 +1,10 @@
-import VectorsFooter from "../assets/VectorsFooter.png";
+import WhiteThemeVectorsFooter from "../assets/WhiteThemeVectorsFooter.png";
+import DarkThemeVectorsFooter from "../assets/DarkThemeVectorsFooter.png";
 import styled from "styled-components";
+
+interface FooterProps{
+    darkTheme: boolean
+}
 
 const Image = styled.img`
     width: 100%;
@@ -8,8 +13,10 @@ const Image = styled.img`
     bottom: 0px;
 `;
 
-export function Footer() {
+export function Footer(props:FooterProps) {
     return(
-        <Image src={VectorsFooter} />
+        <Image src={
+            props.darkTheme ? DarkThemeVectorsFooter : WhiteThemeVectorsFooter
+        } />
     );
 }

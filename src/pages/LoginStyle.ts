@@ -2,11 +2,12 @@ import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
 interface GlobalStyleProps {
-    DarkTheme: Boolean
+    darkTheme: Boolean
 }
 
 interface ForgotPasswordProps{
   marginTop?: number;
+  color: string;
 }
 
 interface FlexRowProps{
@@ -15,10 +16,28 @@ interface FlexRowProps{
 
 export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   body {
-    background-color: ${props => props.DarkTheme ? "#093545" : "#E5E5E5"};
+    background-color: ${props => props.darkTheme ? "#093545" : "#E5E5E5"};
     margin: 0px;
     padding: 0px;
   }
+`;
+
+export const Title = styled.h1`
+  font-family: 'Lexend Deca', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+
+  color: ${(props:{color: string}) => props.color};
+`;
+
+export const Caption = styled.span`
+  font-family: 'Lexend Deca', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+
+  color: ${(props:{color: string}) => props.color};
 `;
 
 export const Wrapper = styled.div`
@@ -32,24 +51,6 @@ export const Wrapper = styled.div`
   transform: translate(-50%, -50%);
 
   text-align: center;
-
-  h1{
-    font-family: 'Lexend Deca', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 64px;
-
-    color: #224957;
-  };
-
-  span{
-    font-family: 'Lexend Deca', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-
-    color: #224957;
-  }
 `;
 
 export const FlexColumn = styled.div`
@@ -79,13 +80,13 @@ export const FlexRow = styled.div<FlexRowProps>`
 export const ForgotPassword = styled.span<ForgotPasswordProps>`
   cursor: pointer;
 
-  color: #000 !important;
+  color: ${props => props.color};
 
   margin-top: ${props => props.marginTop ? `${props.marginTop}px` : `16px` };
 
-  font-family: 'Montserrat', sans-serif !important;
-  font-style: normal !important;
-  font-weight: 500 !important;
-  font-size: 14px !important;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 17px;
 `;
