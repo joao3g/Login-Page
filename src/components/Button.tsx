@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface ButtonProps {
     backgroundColor: string;
+    color: string;
 
     width?: number;
     height?: number;
@@ -15,6 +16,7 @@ interface ButtonProps {
 
 interface FormButtonProps {
     backgroundColor: string;
+    color: string;
     text: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
 
@@ -54,7 +56,7 @@ const Button = styled.button<ButtonProps>`
 
         line-height: 20px;
   
-        color: #224957;
+        color: ${props => `${props.color}`};
       }
 
 `;
@@ -70,6 +72,7 @@ export function FormButton(props:FormButtonProps) {
             width={props.width}
             height={props.height}
 
+            color={props.color}
             
             backgroundColor={props.backgroundColor}
             onClick={props.onClick}
