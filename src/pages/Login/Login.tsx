@@ -4,18 +4,30 @@ import { FormCheckbox } from "../../components/Checkbox";
 import { Footer } from "../../components/Footer";
 import { Icon } from "../../components/ThemeIcon";
 import { FormInput } from "../../components/Input";
-import { FlexColumn, FlexRow, ForgotPassword, GlobalStyle, Title, Caption, Wrapper } from "./LoginStyle"
+import { Form, FlexRow, ForgotPassword, GlobalStyle, Title, Caption, Wrapper } from "./LoginStyle"
 
 export function Login() {
 
-    const [darkTheme, setDarkTheme] = useState(0);
+    const [darkTheme, setDarkTheme] = useState(false);
+    const [login, setLogin] = useState("");
+    const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem("darkTheme", String(darkTheme))
+        localStorage.setItem("darkTheme", JSON.stringify(darkTheme))
     }, [darkTheme]);
 
-    const clickButton = () => {
-        console.log("Login action!");
+    const handleLogin = (event:React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        
+        /* Fetch in API if the Login is correctly */
+
+        localStorage.setItem("Login", login);
+        localStorage.setItem("Remember me", JSON.stringify(remember));
+
+        setLogin("");
+        setPassword("");
+        setRemember(false);
     }
 
     const handleForgotPassword = () => {
@@ -23,7 +35,11 @@ export function Login() {
     }
 
     const handleThemeChanger = () => {
-        darkTheme ? setDarkTheme(0) : setDarkTheme(1);
+        darkTheme ? setDarkTheme(false) : setDarkTheme(true);
+    }
+
+    const handleCheckbox = () => {
+        remember ? setRemember(false) : setRemember(true);
     }
 
     return (
@@ -32,17 +48,23 @@ export function Login() {
             <Wrapper>
                 <Title color={darkTheme ? "#FFF" : "#224957"}>Sign in</Title>
                 <Caption color={darkTheme ? "#FFF" : "#224957"}>Sign in and start managing your candidates!</Caption>
-                <FlexColumn>
+                <Form
+                    onSubmit={handleLogin}
+                >
                     <FormInput
                         placeholder="Login"
                         marginTop={32}
-                        type="email"
+                        type="text"
+                        onChange={(e) => setLogin(e.target.value)}
+                        value={login}
                     />
 
                     <FormInput
                         placeholder="Password"
                         marginTop={32}
                         type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                     />
 
                     <FlexRow>
@@ -50,6 +72,8 @@ export function Login() {
                             id="remember"
                             label="Remember me"
                             colorLabel={darkTheme ? "#FFF" : "#093545"}
+                            onClick={handleCheckbox}
+                            checked={remember}
                         />
 
                         <ForgotPassword
@@ -63,13 +87,12 @@ export function Login() {
                         backgroundColor="#20DF7F"
                         color={darkTheme ? "#FFF" : "#224957"}
                         marginTop={32}
-                        onClick={clickButton}
                         width={
                             /* 300px (width FormInput) + 18px (Padding Left placeholder FormInput)*/
                             318
                         }
                     />
-                </FlexColumn>
+                </Form>
             </Wrapper>
             <Footer
                 darkTheme={darkTheme}

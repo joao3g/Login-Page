@@ -5,7 +5,7 @@ export function ErrorPage () {
     const error:any = useRouteError();
     console.log(error)
 
-    const darkTheme = Number(localStorage.getItem("darkTheme"));
+    const darkTheme = JSON.parse(localStorage.getItem("darkTheme") || "{}");
     return (
         <>
             <GlobalStyle backgroundColor={darkTheme ? "#093545" : "#E5E5E5"} />

@@ -6,6 +6,9 @@ import styled from "styled-components";
 interface FormCheckboxProps {
     id: string;
 
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    checked?: Checkbox.CheckedState;
+
     label?: string;
     fontSizeLabel?: number;
     colorLabel?: string;
@@ -102,6 +105,8 @@ export function FormCheckbox(props:FormCheckboxProps){
         >
             <StyledCheckbox
                 id={props.id}
+                onClick={props.onClick}
+                checked={props.checked}
             >
                 <StyledIndicator>
                     <CheckIcon />

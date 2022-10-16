@@ -53,7 +53,7 @@ export const Wrapper = styled.div`
   text-align: center;
 `;
 
-export const FlexColumn = styled.div`
+export const Form = styled.form`
   background-color: transparent;
 
   display: flex;

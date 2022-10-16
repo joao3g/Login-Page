@@ -15,6 +15,9 @@ interface FormInputProps {
     type?: string;
     name?: string;
 
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    value?: string;
+
     width?: number;
     height?: number;
 
@@ -69,6 +72,9 @@ export function FormInput(props:FormInputProps) {
             name={props.name}
             placeholder={props.placeholder}
             type={props.type}
+
+            onChange={props.onChange}
+            value={props.value}
         />
     );
 }
