@@ -77,7 +77,7 @@ const Label = styled.label<LabelProps>`
     color: ${props => props.colorLabel ? props.colorLabel : `#093545` };
     user-select: none;
 
-    margin-left: 18px;
+    margin-left: 12px;
 `;
 
 const Flex = styled.div<FlexProps>`

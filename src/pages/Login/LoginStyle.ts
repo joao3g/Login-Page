@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
 interface GlobalStyleProps {
-    darkTheme: Boolean
+    backgroundColor: string
 }
 
 interface ForgotPasswordProps{
@@ -16,7 +16,7 @@ interface FlexRowProps{
 
 export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   body {
-    background-color: ${props => props.darkTheme ? "#093545" : "#E5E5E5"};
+    background-color: ${props => props.backgroundColor };
     margin: 0px;
     padding: 0px;
   }

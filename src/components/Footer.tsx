@@ -3,7 +3,7 @@ import DarkThemeVectorsFooter from "../assets/DarkThemeVectorsFooter.png";
 import styled from "styled-components";
 
 interface FooterProps{
-    darkTheme: boolean
+    darkTheme: number
 }
 
 const Image = styled.img`

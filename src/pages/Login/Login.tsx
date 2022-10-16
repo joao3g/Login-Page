@@ -1,14 +1,18 @@
-import React, { useState } from "react";
-import { FormButton } from "../components/Button";
-import { FormCheckbox } from "../components/Checkbox";
-import { Footer } from "../components/Footer";
-import { Icon } from "../components/ThemeIcon";
-import { FormInput } from "../components/Input";
+import React, { useState, useEffect } from "react";
+import { FormButton } from "../../components/Button";
+import { FormCheckbox } from "../../components/Checkbox";
+import { Footer } from "../../components/Footer";
+import { Icon } from "../../components/ThemeIcon";
+import { FormInput } from "../../components/Input";
 import { FlexColumn, FlexRow, ForgotPassword, GlobalStyle, Title, Caption, Wrapper } from "./LoginStyle"
 
 export function Login() {
 
-    const [darkTheme, setDarkTheme] = useState(false);
+    const [darkTheme, setDarkTheme] = useState(0);
+
+    useEffect(() => {
+        localStorage.setItem("darkTheme", String(darkTheme))
+    }, [darkTheme]);
 
     const clickButton = () => {
         console.log("Login action!");
@@ -19,24 +23,24 @@ export function Login() {
     }
 
     const handleThemeChanger = () => {
-        darkTheme ? setDarkTheme(false) : setDarkTheme(true);
+        darkTheme ? setDarkTheme(0) : setDarkTheme(1);
     }
 
-    return(
+    return (
         <React.Fragment>
-            <GlobalStyle darkTheme={darkTheme}/>
+            <GlobalStyle backgroundColor={darkTheme ? "#093545" : "#E5E5E5"} />
             <Wrapper>
                 <Title color={darkTheme ? "#FFF" : "#224957"}>Sign in</Title>
                 <Caption color={darkTheme ? "#FFF" : "#224957"}>Sign in and start managing your candidates!</Caption>
                 <FlexColumn>
-                    <FormInput 
-                        placeholder="Login" 
+                    <FormInput
+                        placeholder="Login"
                         marginTop={32}
                         type="email"
                     />
-                    
-                    <FormInput 
-                        placeholder="Password" 
+
+                    <FormInput
+                        placeholder="Password"
                         marginTop={32}
                         type="password"
                     />
@@ -54,8 +58,8 @@ export function Login() {
                         > Forgot Password? </ForgotPassword>
                     </FlexRow>
 
-                    <FormButton 
-                        text="Login" 
+                    <FormButton
+                        text="Login"
                         backgroundColor="#20DF7F"
                         color={darkTheme ? "#FFF" : "#224957"}
                         marginTop={32}
@@ -67,7 +71,7 @@ export function Login() {
                     />
                 </FlexColumn>
             </Wrapper>
-            <Footer 
+            <Footer
                 darkTheme={darkTheme}
             />
             <Icon
