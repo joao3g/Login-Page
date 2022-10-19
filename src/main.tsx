@@ -17,6 +17,7 @@ import { useLocalStorage, useSessionStorage } from "usehooks-ts";
 
 interface AuthContextProps {
   user: string;
+  remember: boolean;
   signin: (user: string, remember: boolean, callback: VoidFunction) => void;
   signout: (callback: VoidFunction) => void;
 }
@@ -33,8 +34,11 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const user = userSession == "" ? userLocal : userSession;
 
+  var rememberMe = false;
+
   const signin = (newUser: string, remember: boolean, callback: VoidFunction) => {
     remember ? setUserLocal(newUser) : setUserSession(newUser);
+    rememberMe = remember;
     callback();
   };
 
@@ -42,9 +46,9 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     setUserSession("");
     setUserLocal("");
     callback();
-  };
+  }; 
 
-  const value = { user, signin, signout };
+  const value = { user, remember: rememberMe, signin, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

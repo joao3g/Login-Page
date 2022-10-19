@@ -29,6 +29,8 @@ export function Login() {
     const from = location.state?.from?.pathname || "/home";
 
     useEffect(() => {
+        document.title = "Login Page"
+
         if(auth.user != ""){
             console.log(from)
             navigate(from, {replace: true});
