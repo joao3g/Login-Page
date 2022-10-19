@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 
 import { useLocalStorage, useSessionStorage } from "usehooks-ts";
+import { useState } from 'react';
 
 interface AuthContextProps {
   user: string;
@@ -32,13 +33,12 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   const [userSession, setUserSession] = useSessionStorage('user', "");
   const [userLocal, setUserLocal] = useLocalStorage('user', "");
 
+  const [remember, setRemember] = useState(false)
   const user = userSession == "" ? userLocal : userSession;
-
-  var rememberMe = false;
 
   const signin = (newUser: string, remember: boolean, callback: VoidFunction) => {
     remember ? setUserLocal(newUser) : setUserSession(newUser);
-    rememberMe = remember;
+    setRemember(remember);
     callback();
   };
 
@@ -48,7 +48,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     callback();
   }; 
 
-  const value = { user, remember: rememberMe, signin, signout };
+  const value = { user, remember, signin, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
