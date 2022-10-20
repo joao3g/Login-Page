@@ -1,5 +1,4 @@
 # Login Page
----
 ### :rocket: Descrição
 
 Este projeto foi criado baseado em um design aberto da comunidade do Figma ([Link para o design](https://www.figma.com/file/ikektc2YlJqRIirM0R0r2n/Login-Page-design-(Community)?node-id=0%3A1)), foi desenvolvido no intuito de melhorar as habilidades nas tecnologias utilizadas no projeto, vale ressaltar que além do que foi proposto no design, existe também uma Home Page para que tecnologias como o React Router pudessem ser utilizadas.
@@ -53,7 +52,7 @@ $ yarn dev
 
  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/26381283?v=4" width="100px;" alt=""/>
  <br />
- <sub><b>João Gabriel</b></sub>
+ <sub><b>João Gabriel de Almeida Silva</b></sub>
 
 
 Feito com ❤️ por João Gabriel 👋🏽 Entre em contato!
